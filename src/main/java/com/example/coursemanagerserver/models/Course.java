@@ -1,6 +1,8 @@
 package com.example.coursemanagerserver.models;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,9 @@ public class Course {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	// setters and getters for all private fields
+	
+	@OneToMany(mappedBy="course")
+    private List<Module> modules;
 
 	public int getId() {
 		return id;
