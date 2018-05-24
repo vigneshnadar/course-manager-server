@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coursemanagerserver.models.Course;
+import com.example.coursemanagerserver.models.Lesson;
 import com.example.coursemanagerserver.models.Module;
 import com.example.coursemanagerserver.repositories.CourseRepository;
 import com.example.coursemanagerserver.repositories.ModuleRepository;
@@ -24,6 +25,13 @@ public class ModuleService {
 	CourseRepository courseRepository;
 	@Autowired
 	ModuleRepository moduleRepository;
+	
+	
+	@GetMapping("/api/module")
+	public Iterable<Module> findAllModules() {
+		return moduleRepository.findAll(); 
+	}
+	
 
 	@PostMapping("/api/course/{courseId}/module")
 	public Module createModule(@PathVariable("courseId") int courseId, @RequestBody Module newModule) {
@@ -41,6 +49,7 @@ public class ModuleService {
 	@GetMapping("/api/course/{courseId}/module")
 	public List<Module> findAllModulesForCourse(@PathVariable("courseId") int courseId) {
 		Optional<Course> data = courseRepository.findById(courseId);
+		
 
 		if (data.isPresent()) {
 			Course course = data.get();

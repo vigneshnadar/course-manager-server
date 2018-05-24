@@ -17,7 +17,7 @@ public class Course {
 	private Date modified;
 	// setters and getters for all private fields
 	
-	@OneToMany(mappedBy="course")
+	@OneToMany(mappedBy="course",orphanRemoval=true)
     private List<Module> modules;
 
 	public List<Module> getModules() {
