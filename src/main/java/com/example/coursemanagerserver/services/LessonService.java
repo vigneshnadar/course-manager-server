@@ -24,8 +24,8 @@ public class LessonService {
 	@Autowired
 	LessonRepository lessonRepository;
 
-	@PostMapping("/api/module/{moduleId}/lesson")
-	public Lesson createLesson(@PathVariable("moduleId") int moduleId, @RequestBody Lesson newLesson) {
+	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")
+	public Lesson createLesson(@PathVariable("moduleId") int courseId,@PathVariable("moduleId") int moduleId, @RequestBody Lesson newLesson) {
 		Optional<Module> data = moduleRepository.findById(moduleId);
 
 		if (data.isPresent()) {
