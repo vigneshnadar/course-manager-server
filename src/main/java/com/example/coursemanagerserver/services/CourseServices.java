@@ -1,5 +1,7 @@
 package com.example.coursemanagerserver.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,18 @@ public class CourseServices {
 	public Iterable<Course> findAllCourses() {
 		return courseRepository.findAll(); 
 	}
+	
+	
+	 @GetMapping("/api/course/{id}")
+		public Course findCourseById(@PathVariable("id") int id) {
+			Optional<Course> data = courseRepository.findById(id); 
+			
+			if(data.isPresent())
+				return data.get();
+			
+			return null;
+			
+		}
 	
 	@PostMapping("/api/course")
 	public Course createCourse
