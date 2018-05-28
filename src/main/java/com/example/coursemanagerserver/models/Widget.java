@@ -24,5 +24,21 @@ public class Widget {
 		this.text = text;
 	}
 	private String text;
+	
+	private String widgetType;
+	public String getWidgetType() {
+		return widgetType;
+	}
+	public void setWidgetType(String widgetType) {
+		this.widgetType = widgetType;
+	}
+	
+	private int size;
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
 
 }
