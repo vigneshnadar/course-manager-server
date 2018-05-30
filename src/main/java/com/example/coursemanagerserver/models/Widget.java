@@ -18,10 +18,17 @@ public class Widget {
 	private int widgetOrder;
 	private String imageSrc;
 	private String linkHref;
+	private String listType;
 	
 	
 	
 	
+	public String getListType() {
+		return listType;
+	}
+	public void setListType(String listType) {
+		this.listType = listType;
+	}
 	public String getWidgetName() {
 		return widgetName;
 	}
