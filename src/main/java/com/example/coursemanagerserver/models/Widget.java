@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Widget {
@@ -19,10 +22,19 @@ public class Widget {
 	private String imageSrc;
 	private String linkHref;
 	private String listType;
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	
 	
 	
 	
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
 	public String getListType() {
 		return listType;
 	}

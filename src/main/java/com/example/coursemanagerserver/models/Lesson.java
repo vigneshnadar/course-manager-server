@@ -23,6 +23,15 @@ public class Lesson {
 	@OneToMany(mappedBy="lesson",orphanRemoval=true)
 	 private List<Topic> topics;
 	
+	@OneToMany(mappedBy="lesson",orphanRemoval=true)
+	 private List<Widget> widgets;
+	
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
+	}
 	public List<Topic> getTopics() {
 		return topics;
 	}
