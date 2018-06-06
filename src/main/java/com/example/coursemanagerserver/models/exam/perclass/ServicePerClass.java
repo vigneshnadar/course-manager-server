@@ -1,8 +1,21 @@
 package com.example.coursemanagerserver.models.exam.perclass;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.coursemanagerserver.models.Assignment;
+import com.example.coursemanagerserver.models.Exam;
+import com.example.coursemanagerserver.models.Lesson;
+import com.example.coursemanagerserver.models.Widget;
+import com.example.coursemanagerserver.repositories.ExamRepository;
 
 @RestController
 public class ServicePerClass {
@@ -12,6 +25,9 @@ public class ServicePerClass {
 	FillInTheBlankQuestionRepositoryPerClass fillRepo;
 	@Autowired
 	TrueOrFalseQuestionRepositoryPerClass trueRepo;
+	
+	@Autowired
+	ExamRepository examRepo;
 	
 	@GetMapping("/api/inheritance/perclass/base")
 	public BaseQuestionPerClass createBaseQuestion() {
@@ -32,6 +48,7 @@ public class ServicePerClass {
 		q.setVariables("variables 234");
 		return fillRepo.save(q);
 	}
+	
 	@GetMapping("/api/inheritance/perclass/true")
 	public TrueOrFalseQuestionPerClass createTrueQuestion() {
 		TrueOrFalseQuestionPerClass q = new TrueOrFalseQuestionPerClass();
@@ -42,4 +59,26 @@ public class ServicePerClass {
 		q.setIsTrue(true);
 		return trueRepo.save(q);
 	}
+	
+	
+	
+	
+	
+	@PostMapping("/api/exam/{examId}/truefalse")
+	public void createWidgets(@PathVariable("examId") int examId, @RequestBody TrueOrFalseQuestionPerClass trueFalseQuestion) {
+		Optional<Exam> data = examRepo.findById(examId);
+		
+		System.out.println("inside post");
+		
+
+
+
+			Exam ex = data.get();
+
+			trueFalseQuestion.setExam(ex);
+			trueRepo.save(trueFalseQuestion);
+
+		}
+
+	
 }

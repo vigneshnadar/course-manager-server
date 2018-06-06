@@ -21,6 +21,7 @@ import com.example.coursemanagerserver.models.Question;
 import com.example.coursemanagerserver.models.TrueFalseQuestion;
 
 import com.example.coursemanagerserver.models.Widget;
+import com.example.coursemanagerserver.models.exam.perclass.BaseQuestionPerClass;
 import com.example.coursemanagerserver.repositories.ExamRepository;
 import com.example.coursemanagerserver.repositories.LessonRepository;
 import com.example.coursemanagerserver.repositories.MultipleChoicesQuestionRepository;
@@ -140,12 +141,12 @@ public class ExamService {
 	}
 	
 	@GetMapping("/api/exam/{examId}/question")
-	public List<Question> findAllQuestionsForExam(@PathVariable("examId") int examId) {
+	public List<BaseQuestionPerClass> findAllQuestionsForExam(@PathVariable("examId") int examId) {
 		System.out.println("here");
 		Optional<Exam> optionalExam = examRepository.findById(examId);
 		if(optionalExam.isPresent()) {
 			Exam exam = optionalExam.get();
-			List<Question> questions = exam.getQuestions();
+			List<BaseQuestionPerClass> questions = exam.getQuestions();
 			int count = questions.size();
 			return questions;
 		}

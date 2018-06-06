@@ -6,7 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.example.coursemanagerserver.models.Exam;
+import com.example.coursemanagerserver.models.Module;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PER_CLASS_BASE_QUESTION")
@@ -19,6 +24,17 @@ public class BaseQuestionPerClass {
 	private String title;
 	private String description;
 	private String instructions;
+	@ManyToOne
+	@JsonIgnore
+	private Exam exam;
+	
+	
+	public Exam getExam() {
+		return exam;
+	}
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
 	public int getId() {
 		return id;
 	}
