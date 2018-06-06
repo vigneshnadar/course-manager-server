@@ -99,7 +99,8 @@ public class AssignmentService {
 			
 			
 			for(Widget w: widgets) {
-				if(w.getWidgetType().equals("Assignment")) {
+				String currentWidgetType = w.getWidgetType();
+				if(currentWidgetType!=null && currentWidgetType.equals("Assignment")) {
 					outputWidgets.add(w);
 				}
 			}
@@ -111,11 +112,14 @@ public class AssignmentService {
 	
 	
 	@PostMapping("/api/lesson/{lessonId}/assignment")
-	public void createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody List<Assignment> assignments) {
+	public void createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody Assignment assignment) {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		
+		System.out.println("inside post");
+		
 
-		if (data.isPresent()) {
+
+
 			Lesson les = data.get();
 			List<Widget> prevWidgets = les.getWidgets();
 			
@@ -124,12 +128,12 @@ public class AssignmentService {
 //			}
 //			
 //			repository.deleteAll();
-			for(Assignment assign: assignments){
-				assign.setLesson(les);
-				assignRepository.save(assign);
-			}
+			//for(Assignment assign: assignments){
+				assignment.setLesson(les);
+				assignRepository.save(assignment);
+			//}
 		}
 //		return null;
 	}
-}
+
 
