@@ -81,7 +81,8 @@ public class ExamService {
 				
 				
 				for(Widget w: widgets) {
-					if(w.getWidgetType().equals("Assignment")) {
+					String currentWidgetType = w.getWidgetType();
+					if(currentWidgetType!=null && (currentWidgetType.equals("Exam"))) {
 						outputWidgets.add(w);
 					}
 				}
@@ -93,7 +94,7 @@ public class ExamService {
 		
 		
 		@PostMapping("/api/lesson/{lessonId}/exam")
-		public void createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody List<Exam> exams) {
+		public void createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody Exam exam) {
 			Optional<Lesson> data = lessonRepository.findById(lessonId);
 			
 
@@ -106,10 +107,10 @@ public class ExamService {
 //				}
 //				
 //				repository.deleteAll();
-				for(Exam ex: exams){
-					ex.setLesson(les);
-					examRepository.save(ex);
-				}
+				//for(Exam ex: exams){
+					exam.setLesson(les);
+					examRepository.save(exam);
+				//}
 			}
 //			return null;
 		}
