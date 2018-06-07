@@ -31,6 +31,15 @@ public class MultipleChoiceQuestionPerClass
 	@Column(name = "CORRECT_CHOICE", nullable = true)
 	private String correctChoice;
 	
+	@Column(name = "OPTIONS", nullable = true)
+	private String options;
+	
+	public String getOptions() {
+		return options;
+	}
+	public void setOptions(String options) {
+		this.options = options;
+	}
 	public String getCorrectChoice() {
 		return correctChoice;
 	}

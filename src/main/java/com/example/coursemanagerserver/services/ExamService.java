@@ -130,15 +130,15 @@ public class ExamService {
 	
 	
 
-	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
+//	@GetMapping("/api/truefalse/{questionId}")
+//	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
+//		
+//		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
+//		if(optional.isPresent()) {
+//			return optional.get();
+//		}
+//		return null;
+//	}
 	
 	@GetMapping("/api/exam/{examId}/question")
 	public List<BaseQuestionPerClass> findAllQuestionsForExam(@PathVariable("examId") int examId) {
