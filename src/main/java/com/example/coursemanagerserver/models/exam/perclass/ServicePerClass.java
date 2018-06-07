@@ -25,6 +25,11 @@ public class ServicePerClass {
 	FillInTheBlankQuestionRepositoryPerClass fillRepo;
 	@Autowired
 	TrueOrFalseQuestionRepositoryPerClass trueRepo;
+	@Autowired
+	EssayQuestionRepositoryPerClass essayRepo;
+	@Autowired
+	MultipleChoiceQuestionRepositoryPerClass mcqRepo;
+	
 	
 	@Autowired
 	ExamRepository examRepo;
@@ -65,19 +70,40 @@ public class ServicePerClass {
 	
 	
 	@PostMapping("/api/exam/{examId}/truefalse")
-	public void createWidgets(@PathVariable("examId") int examId, @RequestBody TrueOrFalseQuestionPerClass trueFalseQuestion) {
-		Optional<Exam> data = examRepo.findById(examId);
-		
+	public void createTrueFalse(@PathVariable("examId") int examId, @RequestBody TrueOrFalseQuestionPerClass trueFalseQuestion) {
+		Optional<Exam> data = examRepo.findById(examId);		
 		System.out.println("inside post");
-		
-
-
-
 			Exam ex = data.get();
-
 			trueFalseQuestion.setExam(ex);
 			trueRepo.save(trueFalseQuestion);
 
+		}
+	
+	@PostMapping("/api/exam/{examId}/essay")
+	public void createEssay(@PathVariable("examId") int examId, @RequestBody EssayQuestionPerClass essayQuestion) {
+		Optional<Exam> data = examRepo.findById(examId);		
+		    System.out.println("inside post");
+			Exam ex = data.get();
+			essayQuestion.setExam(ex);
+			essayRepo.save(essayQuestion);
+		}
+	
+	@PostMapping("/api/exam/{examId}/choice")
+	public void createChoice(@PathVariable("examId") int examId, @RequestBody MultipleChoiceQuestionPerClass mcQuestion) {
+		Optional<Exam> data = examRepo.findById(examId);		
+		    System.out.println("inside post");
+			Exam ex = data.get();
+			mcQuestion.setExam(ex);
+			mcqRepo.save(mcQuestion);
+		}
+	
+	@PostMapping("/api/exam/{examId}/blanks")
+	public void createWidgets(@PathVariable("examId") int examId, @RequestBody FillInTheBlankQuestionPerClass fillQuestion) {
+		Optional<Exam> data = examRepo.findById(examId);		
+		    System.out.println("inside post");
+			Exam ex = data.get();
+			fillQuestion.setExam(ex);
+			fillRepo.save(fillQuestion);
 		}
 
 	
