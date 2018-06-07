@@ -85,6 +85,7 @@ public class AssignmentService {
 		public void deleteAssignment(
 		@PathVariable("assignmentId") int id) {
 		 assignRepository.deleteById(id);
+		 System.out.println("DELETE DONE");
 		}
 	
 	@GetMapping("/api/lesson/{lessonId}/assignment")
