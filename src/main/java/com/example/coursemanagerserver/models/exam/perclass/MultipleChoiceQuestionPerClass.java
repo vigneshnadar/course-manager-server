@@ -27,10 +27,7 @@ public class MultipleChoiceQuestionPerClass
 	public void setChoices(List<Choice> choices) {
 		this.choices = choices;
 	}
-	
-	@Column(name = "IS_TRUE", nullable = false)
-	private Boolean isTrue;
-	
+
 	@Column(name = "CORRECT_CHOICE", nullable = true)
 	private String correctChoice;
 	
@@ -40,10 +37,14 @@ public class MultipleChoiceQuestionPerClass
 	public void setCorrectChoice(String correctChoice) {
 		this.correctChoice = correctChoice;
 	}
+	
+	@Column(name = "IS_TRUE", nullable = false)
+	private Boolean isTrue;
 	public Boolean getIsTrue() {
 		return isTrue;
 	}
 	public void setIsTrue(Boolean isTrue) {
 		this.isTrue = isTrue;
 	}
+	
 }
