@@ -67,7 +67,49 @@ public class ServicePerClass {
 	
 	
 	
+	@GetMapping("/api/truefalse/{id}")
+	public TrueOrFalseQuestionPerClass findTFById(@PathVariable("id") int id) {
+		Optional<TrueOrFalseQuestionPerClass> data = trueRepo.findById(id); 
+		
+		if(data.isPresent())
+			return data.get();
+		
+		return null;
+		
+	}
 	
+	@GetMapping("/api/essay/{id}")
+	public EssayQuestionPerClass findEssayById(@PathVariable("id") int id) {
+		Optional<EssayQuestionPerClass> data = essayRepo.findById(id); 
+		
+		if(data.isPresent())
+			return data.get();
+		
+		return null;
+		
+	}
+	
+	@GetMapping("/api/choice/{id}")
+	public MultipleChoiceQuestionPerClass findMcqById(@PathVariable("id") int id) {
+		Optional<MultipleChoiceQuestionPerClass> data = mcqRepo.findById(id); 
+		
+		if(data.isPresent())
+			return data.get();
+		
+		return null;
+		
+	}
+	
+	@GetMapping("/api/blanks/{id}")
+	public FillInTheBlankQuestionPerClass findBlankById(@PathVariable("id") int id) {
+		Optional<FillInTheBlankQuestionPerClass> data = fillRepo.findById(id); 
+		
+		if(data.isPresent())
+			return data.get();
+		
+		return null;
+		
+	}
 	
 	@PostMapping("/api/exam/{examId}/truefalse")
 	public void createTrueFalse(@PathVariable("examId") int examId, @RequestBody TrueOrFalseQuestionPerClass trueFalseQuestion) {
